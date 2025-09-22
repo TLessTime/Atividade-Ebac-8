@@ -1,4 +1,3 @@
-```md
 # catálogo de produtos react
 
 
