@@ -1,4 +1,29 @@
-```jsx
+import React, { useState, useEffect } from 'react'
+import ProdutoCard from '../components/ProdutoCard'
+
+
+export default function Home() {
+const [produtos, setProdutos] = useState([])
+const [loading, setLoading] = useState(true)
+
+
+const [formData, setFormData] = useState({
+nome: '',
+preco: '',
+descricao: '',
+imagem: ''
+})
+
+
+useEffect(() => {
+setTimeout(() => {
+setProdutos([
+{ id: 1, nome: 'Notebook', preco: 3500, descricao: 'Notebook gamer', imagem: 'https://via.placeholder.com/150' },
+{ id: 2, nome: 'Smartphone', preco: 2000, descricao: 'Celular Android', imagem: 'https://via.placeholder.com/150' }
+])
+setLoading(false)
+}, 1500)
+}, [])
 
 
 function handleChange(e) {
@@ -44,27 +69,4 @@ placeholder="URL da imagem (opcional)"
 value={formData.imagem}
 onChange={handleChange}
 />
-<textarea
-name="descricao"
-placeholder="Descrição"
-value={formData.descricao}
-onChange={handleChange}
-required
-/>
-<button type="submit">Adicionar Produto</button>
-</form>
-
-
-{loading ? (
-<p>Carregando produtos...</p>
-) : (
-<div className="produtos-grid">
-{produtos.map(p => (
-<ProdutoCard key={p.id} {...p} />
-))}
-</div>
-)}
-</div>
-)
 }
-```
